@@ -1,16 +1,6 @@
 console.log("hello from app.js");
 window.addEventListener('load', ()=>{
 
-
-    // open and connect socket
-    let socket = io();
-    //listen for conformation of connection
-
-    document.getElementById('gallery-tracker').addEventListener('click', () => {
-
-    });
-
-////////////////////////
     document.getElementById('button-submit').addEventListener('click', () => {
         const numInput = 5;
         const inputArray = [];

@@ -21,7 +21,7 @@ app.post('/noResponse', (req, res) => {
     let currentDate = Date();
     let obj = {
         date: currentDate,
-        response: req.bod
+        response: req.body
     }
     
     //DB 2 add values to the DB
@@ -47,34 +47,4 @@ app.get('/getResponse', (req, res)=>{
         let obj = {data: inputData};
         res.json(obj);
     }) 
-})
-
-
-
-//socket set up
-let http = require('http');
-let server = http.createServer(app);
-let port = process.env.PORT || 3000;
-
-server.listen(port, () => {
-    console.log("Server listerning at port: " + port);
-});
-
-
-// initialize socket.io
-let io = require('socket.io');
-io = new io.Server(server);
-
-//listen for individual clients/users to connect
-io.sockets.on('connection', function(socket) {
-    console.log("We have a new cliient: " + socket.id);
-
-    //listen for a message named msg from this client
-
-
-});
-
-//listen for this client to disconnect
-socket.on('disconnect', function(){
-    console.log("A client has disconnected" + socket.id);
 });
