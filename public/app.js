@@ -5,9 +5,6 @@ window.addEventListener('load', ()=>{
     // open and connect socket
     let socket = io();
     //listen for conformation of connection
-    socket.on('connect', function () {
-        console.log("Connected");
-    });
 
     document.getElementById('gallery-tracker').addEventListener('click', () => {
 
