@@ -2,13 +2,16 @@ let express = require('express');
 let app = express();
 
 //DB 1 connect to mongoDB
+require('dotenv').config();
 const { Database } = require("quickmongo");
-const db = new Database(process.env.MONGODB-URL);
+const db = new Database(process.env.MONGODB_URL);
 db.on("ready", () => {
     console.log("Connected to the database");
 })
 
 db.connect();
+
+
 
 app.use(express.json());
 let inputTracker =[];
@@ -16,17 +19,18 @@ let inputTracker =[];
 // 2. add a route 
 app.post('/noResponse', (req, res) => {
     console.log(req.body);
-    let obj = {
-        author: req.body.author,
-        response: req.body.inputData
-    }
-
 
     //DB 2 add values to the DB
-    db.push("inputTrackerData", obj);
-    res.json({task:"success"});
+    try {
+        db.push("madlibsResponse", req.body)
+        res.json({task:"success"});
+    } catch(e) {
+      console.log(e);  
+      res.status(400);
+    }
+    
+   
 })
-
 
 app.use('/', express.static('public'));
 
@@ -38,8 +42,8 @@ app.listen(3000, ()=>{
 //add route to get all word inputs
 app.get('/getResponse', (req, res)=>{
     //DB 3 fetch from the DB
-    db.get("inputTrackerData").then(inputData => {
-        let obj = {data: inputData};
+    db.get("madlibsResponse").then(madlibsData => {
+        let obj = {data: madlibsData};
         res.json(obj);
     }) 
 })
