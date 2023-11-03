@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "engines": {
+    "node": "^12.8.1"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,5 +17,6 @@
     "express": "^4.18.2",
     "mongodb": "^6.2.0",
     "quickmongo": "^5.2.0"
+    
   }
 }

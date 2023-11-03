@@ -57,6 +57,7 @@ window.addEventListener('load', ()=>{
             document.getElementById('display-info').innerHTML = '';
             //TODO: add data into html for individual user here
             
+
         })
     })
 
