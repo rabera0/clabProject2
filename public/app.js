@@ -1,10 +1,11 @@
 console.log("hello from app.js");
 window.addEventListener('load', ()=>{
-
     document.getElementById('button-submit').addEventListener('click', () => {
+        //assign author
+        let author = document.getElementById('input1');
+        //fill in madlibs
         const numInput = 5;
         const inputArray = [];
-    
         for (let i = 1; i <= numInput; i++) {
             inputArray.push(document.getElementById('input' + i));
         }
@@ -24,7 +25,9 @@ window.addEventListener('load', ()=>{
 
 
         //creating the object
-        let obj = {"response" : noResponse};
+        let obj = {
+            "author" : author,
+            "response" : noResponse};
 
         //strigify the object
         let jsonData = JSON.stringify(obj);
@@ -45,6 +48,7 @@ window.addEventListener('load', ()=>{
 
     })
 
+    //see the response of the individual
     document.getElementById('get-tracker').addEventListener('click', () => {
         //get info on all the responses we've had so far
         fetch('/getResponse')

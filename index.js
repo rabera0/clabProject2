@@ -1,4 +1,3 @@
-// initialize express app object
 let express = require('express');
 let app = express();
 
@@ -12,23 +11,19 @@ db.on("ready", () => {
 db.connect();
 
 app.use(express.json());
-
 let inputTracker =[];
 
 // 2. add a route 
 app.post('/noResponse', (req, res) => {
     console.log(req.body);
-    let currentDate = Date();
     let obj = {
-        date: currentDate,
-        response: req.body
+        author: req.body.author,
+        response: req.body.inputData
     }
-    
+
+
     //DB 2 add values to the DB
     db.push("inputTrackerData", obj);
-
-
-    // console.log(inputTracker);
     res.json({task:"success"});
 })
 
@@ -47,4 +42,4 @@ app.get('/getResponse', (req, res)=>{
         let obj = {data: inputData};
         res.json(obj);
     }) 
-});
+})
